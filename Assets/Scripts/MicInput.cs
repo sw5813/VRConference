@@ -1,5 +1,5 @@
 using UnityEngine;  
-using System.Collections;  
+using System.Collections;
 
 public class MicInput : MonoBehaviour   
 {  
@@ -11,8 +11,8 @@ public class MicInput : MonoBehaviour
 	private float timer = 0;
 
 	public void Start(){ 
+		audio = GetComponent<AudioSource> ();
 		if (GetComponent<PhotonView> ().isMine) {
-			audio = GetComponent<AudioSource> ();
 			c = Microphone.Start (null, true, 100, freq);
 			while(Microphone.GetPosition(null) < 0) {}
 		}
@@ -39,7 +39,7 @@ public class MicInput : MonoBehaviour
 	[PunRPC]
 	public void Send(byte[] ba, int chan) {
 		float[] f = ToFloatArray(ba);
-		audio.clip = AudioClip.Create("", f.Length, chan, freq,true,false);
+		audio.clip = AudioClip.Create("clip", f.Length, chan, freq,true,false);
 		audio.clip.SetData(f, 0);
 		if (!audio.isPlaying) audio.Play();
 		
