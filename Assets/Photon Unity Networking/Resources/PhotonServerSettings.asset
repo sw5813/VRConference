@@ -37,4 +37,5 @@ MonoBehaviour:
   - RequestForPickupTimes
   - TaggedPlayer
   - Speak
+  - Send
   DisableAutoOpenWizard: 1

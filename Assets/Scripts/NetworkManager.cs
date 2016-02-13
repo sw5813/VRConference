@@ -39,5 +39,7 @@ public class NetworkManager : MonoBehaviour {
 		                                    new Vector3(x,0.5f,z),
 		                                    Quaternion.Euler(0,0,0),
 		                                    0);
+
+		//player.GetComponent<PhotonView>().RPC("Speak", PhotonTargets.All);
 	}
 }
