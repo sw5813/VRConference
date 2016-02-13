@@ -6,63 +6,46 @@ public class MicInput : MonoBehaviour
 	private AudioClip c;
 	private AudioSource audio;
 
+	private static int freq = 8000;//44100;
+	private int lastSample = 0;
+	private float timer = 0;
+
 	public void Start(){ 
-		Debug.Log ("start");
-		audio = GetComponent<AudioSource> ();
+		if (GetComponent<PhotonView> ().isMine) {
+			audio = GetComponent<AudioSource> ();
+			c = Microphone.Start (null, true, 100, freq);
+			while(Microphone.GetPosition(null) < 0) {}
+		}
 	}
 
-//	public void Start(){ 
-//		audio = GetComponent<AudioSource>(); 
-//		c = Microphone.Start (null, true, 300, 44100);
-//		while (!(Microphone.GetPosition(null) > 0)) {}
-//		audio.PlayOneShot (c);
-//	}
-
-	int lastSample = 0;
-	private bool notRecording = true;
-	private bool sending = false;
-
-	void FixedUpdate()
+	void Update()
 	{
-		Debug.Log ("fixed update");
-		// If there is a connection
-		if (GetComponent<PhotonView>().isMine) {
-			if (notRecording) {
-				Debug.Log ("recording");
-				notRecording = false;
-				c = Microphone.Start (null, true, 100, 44100);
-				sending = true;
-			} else if (sending) {
-				Debug.Log ("sending");
-				int pos = Microphone.GetPosition (null);
-				int diff = pos - lastSample;
-			
-				if (diff > 0) {
-					Debug.Log ("diff");
-					float[] samples = new float[diff * c.channels];
-					c.GetData (samples, lastSample);
-					byte[] ba = ToByteArray (samples);
-					GetComponent<PhotonView> ().RPC ("Send", PhotonTargets.All, ba, c.channels);
-					Debug.Log (Microphone.GetPosition (null).ToString ());
-				}
-				lastSample = pos;
+		timer += Time.deltaTime;
+		if (GetComponent<PhotonView>().isMine && timer > .5f) {
+			timer = 0;
+			int pos = Microphone.GetPosition (null);
+			int diff = pos - lastSample;
+		
+			if (diff > 0) {
+				float[] samples = new float[diff * c.channels];
+				c.GetData (samples, lastSample);
+				byte[] ba = ToByteArray (samples);
+				GetComponent<PhotonView> ().RPC ("Send", PhotonTargets.All, ba, c.channels);
 			}
+			lastSample = pos;
 		}
 	}
 	
 	[PunRPC]
 	public void Send(byte[] ba, int chan) {
-		Debug.Log ("rpc");
 		float[] f = ToFloatArray(ba);
-		Debug.Log (f);
-		audio.clip = AudioClip.Create("", f.Length, chan, 44100,true,false);
+		audio.clip = AudioClip.Create("", f.Length, chan, freq,true,false);
 		audio.clip.SetData(f, 0);
 		if (!audio.isPlaying) audio.Play();
 		
 	}
 	// Used to convert the audio clip float array to bytes
 	public byte[] ToByteArray(float[] floatArray) {
-		Debug.Log ("tobytearray");
 		int len = floatArray.Length * 4;
 		byte[] byteArray = new byte[len];
 		int pos = 0;
@@ -75,7 +58,6 @@ public class MicInput : MonoBehaviour
 	}
 	// Used to convert the byte array to float array for the audio clip
 	public float[] ToFloatArray(byte[] byteArray) {
-		Debug.Log ("tofloatarray");
 		int len = byteArray.Length / 4;
 		float[] floatArray = new float[len];
 		for (int i = 0; i < byteArray.Length; i+=4) {
