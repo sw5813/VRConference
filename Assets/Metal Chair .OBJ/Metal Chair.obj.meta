@@ -1,0 +1,158 @@
+fileFormatVersion: 2
+guid: 314a445ac6cb2483cabc3e4efe7da53a
+timeCreated: 1455409820
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: Circle001
+    100002: Circle002
+    100004: Circle003
+    100006: Circle004
+    100008: Cylinder004
+    100010: Cylinder005
+    100012: Cylinder006
+    100014: Line002
+    100016: Line003
+    100018: Line004
+    100020: Line005
+    100022: Line006
+    100024: Line007
+    100026: //RootNode
+    100028: Rectangle001
+    100030: Rectangle002
+    100032: Sphere002
+    100034: Sphere003
+    400000: Circle001
+    400002: Circle002
+    400004: Circle003
+    400006: Circle004
+    400008: Cylinder004
+    400010: Cylinder005
+    400012: Cylinder006
+    400014: Line002
+    400016: Line003
+    400018: Line004
+    400020: Line005
+    400022: Line006
+    400024: Line007
+    400026: //RootNode
+    400028: Rectangle001
+    400030: Rectangle002
+    400032: Sphere002
+    400034: Sphere003
+    2300000: Circle001
+    2300002: Circle002
+    2300004: Circle003
+    2300006: Circle004
+    2300008: Cylinder004
+    2300010: Cylinder005
+    2300012: Cylinder006
+    2300014: Line002
+    2300016: Line003
+    2300018: Line004
+    2300020: Line005
+    2300022: Line006
+    2300024: Line007
+    2300026: Rectangle001
+    2300028: Rectangle002
+    2300030: Sphere002
+    2300032: Sphere003
+    3300000: Circle001
+    3300002: Circle002
+    3300004: Circle003
+    3300006: Circle004
+    3300008: Cylinder004
+    3300010: Cylinder005
+    3300012: Cylinder006
+    3300014: Line002
+    3300016: Line003
+    3300018: Line004
+    3300020: Line005
+    3300022: Line006
+    3300024: Line007
+    3300026: Rectangle001
+    3300028: Rectangle002
+    3300030: Sphere002
+    3300032: Sphere003
+    4300000: Circle001
+    4300002: Circle002
+    4300004: Circle003
+    4300006: Circle004
+    4300008: Cylinder004
+    4300010: Cylinder005
+    4300012: Cylinder006
+    4300014: Line002
+    4300016: Line003
+    4300018: Line004
+    4300020: Line005
+    4300022: Line006
+    4300024: Line007
+    4300026: Rectangle001
+    4300028: Rectangle002
+    4300030: Sphere002
+    4300032: Sphere003
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleRotations: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
