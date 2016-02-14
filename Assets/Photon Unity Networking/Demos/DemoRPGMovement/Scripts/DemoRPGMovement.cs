@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ﻿using UnityEngine;
 using System.Collections;
 
@@ -19,3 +20,26 @@ public class DemoRPGMovement : MonoBehaviour
         Camera.Target = newPlayerObject.transform;
     }
 }
+=======
+﻿using UnityEngine;
+using System.Collections;
+
+public class DemoRPGMovement : MonoBehaviour 
+{
+    public RPGCamera Camera;
+
+    void OnJoinedRoom()
+    {
+        CreatePlayerObject();
+    }
+
+    void CreatePlayerObject()
+    {
+        Vector3 position = new Vector3( 33.5f, 1.5f, 20.5f );
+
+        GameObject newPlayerObject = PhotonNetwork.Instantiate( "Robot Kyle RPG", position, Quaternion.identity, 0 );
+
+        Camera.Target = newPlayerObject.transform;
+    }
+}
+>>>>>>> 3fcd8fda4bc9610008a6f5ef1ff24faad1bce302

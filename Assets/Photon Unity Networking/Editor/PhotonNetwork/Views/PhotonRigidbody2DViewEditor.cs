@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ﻿using UnityEditor;
 using UnityEngine;
 
@@ -16,4 +17,24 @@ public class PhotonRigidbody2DViewEditor : Editor
         propertyRect.y += EditorGUIUtility.singleLineHeight;
         EditorGUI.PropertyField(propertyRect, serializedObject.FindProperty("m_SynchronizeAngularVelocity"), new GUIContent("Synchronize Angular Velocity"));
     }
+=======
+﻿using UnityEditor;
+using UnityEngine;
+
+[CustomEditor(typeof (PhotonRigidbody2DView))]
+public class PhotonRigidbody2DViewEditor : Editor
+{
+    public override void OnInspectorGUI()
+    {
+        PhotonGUI.ContainerHeader("Options");
+
+        Rect containerRect = PhotonGUI.ContainerBody(EditorGUIUtility.singleLineHeight*2 + 10);
+
+        Rect propertyRect = new Rect(containerRect.xMin + 5, containerRect.yMin + 5, containerRect.width, EditorGUIUtility.singleLineHeight);
+        EditorGUI.PropertyField(propertyRect, serializedObject.FindProperty("m_SynchronizeVelocity"), new GUIContent("Synchronize Velocity"));
+
+        propertyRect.y += EditorGUIUtility.singleLineHeight;
+        EditorGUI.PropertyField(propertyRect, serializedObject.FindProperty("m_SynchronizeAngularVelocity"), new GUIContent("Synchronize Angular Velocity"));
+    }
+>>>>>>> 3fcd8fda4bc9610008a6f5ef1ff24faad1bce302
 }
