@@ -34,7 +34,7 @@ GameObject:
   - 114: {fileID: 11400572}
   - 114: {fileID: 11498058}
   m_Layer: 0
-  m_Name: FPSController
+  m_Name: FPSController_BASE_22659
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

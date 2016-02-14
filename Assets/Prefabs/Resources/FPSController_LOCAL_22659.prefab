@@ -34,7 +34,7 @@ GameObject:
   - 114: {fileID: 11400572}
   - 114: {fileID: 11498058}
   m_Layer: 0
-  m_Name: FPSController
+  m_Name: FPSController_LOCAL_22659
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -265,11 +265,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03df7767b48fa4990a94727e428373c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  toConf: {fileID: 0}
-  fromConf: {fileID: 0}
-  toWeb: {fileID: 0}
-  fromWeb: {fileID: 0}
-  rb: {fileID: 0}
 --- !u!114 &11423552
 MonoBehaviour:
   m_ObjectHideFlags: 1
