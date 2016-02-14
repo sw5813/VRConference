@@ -8,7 +8,9 @@ public class MicInput : MonoBehaviour
 
 	private static int freq = 8000;//44100;
 	private int lastSample = 0;
-	private float timer = 0;
+	private float streamer = 0;
+	private int lastClip = 0;
+	private float clip_timer = 0;
 
 	public void Start(){ 
 		audio = GetComponent<AudioSource> ();
@@ -20,9 +22,9 @@ public class MicInput : MonoBehaviour
 
 	void Update()
 	{
-		timer += Time.deltaTime;
-		if (GetComponent<PhotonView>().isMine && timer > .5f) {
-			timer = 0;
+		streamer += Time.deltaTime;
+		if (GetComponent<PhotonView>().isMine && streamer > .5f) {
+			streamer = 0;
 			int pos = Microphone.GetPosition (null);
 			int diff = pos - lastSample;
 		
@@ -34,8 +36,33 @@ public class MicInput : MonoBehaviour
 			}
 			lastSample = pos;
 		}
+
+		clip_timer += Time.deltaTime;
+		if (GetComponent<PhotonView> ().isMine && clip_timer > 5f) {
+			// get 10 second clip
+			clip_timer = 0;
+			int pos = Microphone.GetPosition (null);
+			Microphone.End(null);
+
+			// send clip to api
+			Debug.Log ("start upload speech");
+			WWWForm form = new WWWForm();
+			int diff = pos - lastClip;
+			float[] samples = new float[diff * c.channels];
+			c.GetData (samples, lastClip);
+			byte[] ba = ToByteArray (samples);
+			lastClip = pos;
+			form.AddBinaryData ("clip", ba); // audio file
+			WWW www = new WWW ("https://speech.platform.bing.com/recognize", form); // send to arshin
+			StartCoroutine (WaitForRequest (www));
+
+			// start new 10 second clip
+			c = Microphone.Start (null, true, 100, freq);
+			while(Microphone.GetPosition(null) < 0) {}
+
+		}
 	}
-	
+
 	[PunRPC]
 	public void Send(byte[] ba, int chan) {
 		float[] f = ToFloatArray(ba);
@@ -64,6 +91,16 @@ public class MicInput : MonoBehaviour
 			floatArray[i/4] = System.BitConverter.ToSingle(byteArray, i);
 		}
 		return floatArray;
+	}
+
+	private IEnumerator WaitForRequest(WWW www) {
+		yield return www;
+		// check for errors
+		if (www.error == null) {
+			Debug.Log (www.text);
+		} else {
+			Debug.Log (www.error);
+		}
 	}
 
 } 
